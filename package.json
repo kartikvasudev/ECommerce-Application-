@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce-application",
+  "version": "1.0.0",
+  "description": "Ecommerce Application APIs using NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kartikvasudev/ECommerce-Application-.git"
+  },
+  "author": "Kartik Vasudev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kartikvasudev/ECommerce-Application-/issues"
+  },
+  "homepage": "https://github.com/kartikvasudev/ECommerce-Application-#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

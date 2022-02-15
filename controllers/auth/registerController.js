@@ -57,7 +57,7 @@ const registerController = {
             
             // 6.generate response
             res.json({accesstoken: access_token});
-    },
+    }
 };
 
 export default registerController;

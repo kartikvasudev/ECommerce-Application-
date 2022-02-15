@@ -5,8 +5,6 @@ import errorHandler from './middleware/errorHandler.js';
 const app = express();
 import routes  from './routes/index.js';
 
-console.log(JWT_SECRET);
-
 //DB Connection
 mongoose.connect(DB_URL,{useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection;

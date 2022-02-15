@@ -4,6 +4,7 @@ import { REFRESH_SECRET } from "../../config/index.js";
 import ErrorHandler from "../../services/ErrorHandler.js";
 import bcrypt from 'bcrypt';
 import JwtService from '../../services/JwtService.js';
+import { refreshSchema } from "./refreshController.js";
 
 const loginSchema =  Joi.object(
     {
@@ -49,6 +50,20 @@ const loginController = {
 
         //5.Send Response
         res.json({access_token,refresh_token});
+    },
+    async logout(req,res,next){
+        //validation
+        const {error} = refreshSchema.validate(req.body);
+        if(error)
+        {
+            return next(error);
+        }
+        try {
+            await RefreshToken.deleteOne({token:req.body.refresh_token});
+        } catch (error) {
+            return next(new Error("Something went wrong with DB"));
+        }
+        res.json({status:200});
     }
 };
 

@@ -4,13 +4,11 @@ import JwtService from "../services/JwtService.js";
 const auth = async (req,res,next) => {
     //Extract token from header
     let authHeader = req.headers.authorization;
-    console.log(authHeader);
     if(!authHeader)
     {
         return next(ErrorHandler.unauthorized());
     }
     const token = authHeader.split(' ')[1];
-    console.log(token);
 
     //Verify Token
     try {

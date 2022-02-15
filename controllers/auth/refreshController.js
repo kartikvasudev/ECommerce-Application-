@@ -59,4 +59,4 @@ const refreshController = {
     }
 };
 
-export default refreshController;
+export  {refreshController,refreshSchema};

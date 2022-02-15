@@ -1,8 +1,9 @@
 import Joi from "joi";
 import ErrorHandler from "../../services/ErrorHandler.js";
-import { User } from "../../models/index.js";
+import { RefreshToken, User } from "../../models/index.js";
 import bcrypt from 'bcrypt';
 import JwtService from "../../services/JwtService.js";
+import { REFRESH_SECRET } from "../../config/index.js";
 
 const registerSchema = Joi.object(
     {
@@ -45,18 +46,24 @@ const registerController = {
             //When key value are same then do like this
 
             // 5.Store in db
-            let access_token;
+            let access_token,refresh_token;
             try {
                 const result = await user.save();
                 console.log(result);
-                access_token = JwtService.sign({_id: result._id,role: result.role});
+        
                 // 5.generate jwt token
+                access_token = JwtService.sign({_id: result._id,role: result.role});
+                refresh_token = JwtService.sign({_id: result._id,role: result.role},'1y',REFRESH_SECRET);
+                
+                //Database whitelist refresh token
+                await RefreshToken.create({refresh_token});
+
             } catch (error) {
                 return next(error);
             }
             
             // 6.generate response
-            res.json({accesstoken: access_token});
+            res.json({access_token,refresh_token});
     }
 };
 

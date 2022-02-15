@@ -1,6 +1,6 @@
 #E-Commerce APIs using NodeJS
 
-[ ] Register a user <br>
+[+] Register a user <br>
 [ ] Login a user <br>
 [ ] Who am I  <br>
 [ ] Add new product <br>

@@ -2,9 +2,10 @@
   "name": "ecommerce-application",
   "version": "1.0.0",
   "description": "Ecommerce Application APIs using NodeJS",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon -r esm server.js",
+    "dev": "npx nodemon -r esm server.js",
     "prod": "node -r esm server.js"
   },
   "repository": {
@@ -18,9 +19,13 @@
   },
   "homepage": "https://github.com/kartikvasudev/ECommerce-Application-#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "esm": "^3.2.25",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

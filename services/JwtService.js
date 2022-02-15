@@ -6,6 +6,11 @@ class JwtService{
         console.log(JWT_SECRET);
         return jwt.sign(payload,secret,{expiresIn: expiry});
     }
+
+    static verify(token,secret=JWT_SECRET){
+        return jwt.verify(token,secret);
+    }
+
 }
 
 export default JwtService;

@@ -12,6 +12,14 @@ class ErrorHandler extends Error{
     static wrongCredentials(message = "Username or Password is wrong"){
         return new ErrorHandler(401,message);
     }
+
+    static unauthorized(message = "Unauthorized"){
+        return new ErrorHandler(401,message);
+    }
+
+    static notFound(message = "404 Not Found"){
+        return new ErrorHandler(404,message);
+    }
 }
 
 export default ErrorHandler;

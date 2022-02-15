@@ -15,7 +15,6 @@ const registerSchema = Joi.object(
 );
 
 
-
 const registerController = {
     async register(req,res,next){
         // 1.validate the request
@@ -49,14 +48,13 @@ const registerController = {
             let access_token,refresh_token;
             try {
                 const result = await user.save();
-                console.log(result);
         
                 // 5.generate jwt token
                 access_token = JwtService.sign({_id: result._id,role: result.role});
                 refresh_token = JwtService.sign({_id: result._id,role: result.role},'1y',REFRESH_SECRET);
                 
                 //Database whitelist refresh token
-                await RefreshToken.create({refresh_token});
+                await RefreshToken.create({token:refresh_token});
 
             } catch (error) {
                 return next(error);

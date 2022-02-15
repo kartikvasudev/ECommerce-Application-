@@ -1,5 +1,6 @@
 import Joi from "joi";
-import { User } from "../../models/index.js";
+import { User,RefreshToken } from "../../models/index.js";
+import { REFRESH_SECRET } from "../../config/index.js";
 import ErrorHandler from "../../services/ErrorHandler.js";
 import bcrypt from 'bcrypt';
 import JwtService from '../../services/JwtService.js';
@@ -41,9 +42,13 @@ const loginController = {
         //4.Token 
         
         const access_token = JwtService.sign({_id: user._id,role: user.role});
+        const refresh_token = JwtService.sign({_id: user._id,role: user.role},'1y',REFRESH_SECRET);
+                
+        //Database whitelist refresh token
+        await RefreshToken.create({token:refresh_token});
 
         //5.Send Response
-        res.json({access_token});
+        res.json({access_token,refresh_token});
     }
 };
 
